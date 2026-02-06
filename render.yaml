@@ -3,7 +3,7 @@ services:
   - type: web
     name: kidney-stone-backend
     runtime: python
-    rootDirectory: backend  # กำหนดให้ทำงานในโฟลเดอร์ backend โดยตรง
+    rootDirectory: backend
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
@@ -16,7 +16,7 @@ services:
   - type: web
     name: kidney-stone-frontend
     runtime: node
-    rootDirectory: my-frontend # กำหนดให้ทำงานในโฟลเดอร์ my-frontend
+    rootDirectory: my-frontend
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
