@@ -292,5 +292,5 @@ if __name__ == '__main__':
     initialize_model()
     
     # Run server
-    logger.info("Server ready on http://localhost:10000")
-    app.run(host='0.0.0.0', port=port, debug=True)
+    logger.info("Server ready on http://localhost:5000")
+    app.run(host='0.0.0.0', port=5000, debug=True)
