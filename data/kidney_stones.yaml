@@ -1,0 +1,10 @@
+# YOLOv8 Dataset Configuration
+path: D:/kidney-stone-yolo-project/data
+
+train: images/train
+val: images/train
+test: images/train
+
+nc: 1
+names:
+  0: kidney_stone
