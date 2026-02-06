@@ -1,9 +1,27 @@
 services:
+  # 1. ส่วนของ Backend (Python + Flask/FastAPI)
   - type: web
     name: kidney-stone-backend
     runtime: python
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: cd backend && gunicorn app:app
+    rootDirectory: backend  # กำหนดให้ทำงานในโฟลเดอร์ backend โดยตรง
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.11
+      - key: PORT
+        value: 10000
+
+  # 2. ส่วนของ Frontend (React/Node.js)
+  - type: web
+    name: kidney-stone-frontend
+    runtime: node
+    rootDirectory: my-frontend # กำหนดให้ทำงานในโฟลเดอร์ my-frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: REACT_APP_API_URL # ตัวแปรนี้จะช่วยให้ Frontend รู้ว่าจะคุยกับ Backend ไหน
+        fromService:
+          type: web
+          name: kidney-stone-backend
+          property: host
